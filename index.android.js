@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View, ScrollView } from 'react-native';
+import { AppRegistry, Text, View, ScrollView, ListView, ToolbarAndroid } from 'react-native';
 import Drawer from 'react-native-drawer'
+import Button from 'react-native-button';
 
 class Application extends Component {  
   closeControlPanel() {
@@ -17,7 +18,7 @@ class Application extends Component {
         ref={(ref) => this._drawer = ref}
         content={<SideContent />}
         openDrawerOffset={100}
-        open={true}
+        open={false}
         styles={drawerStyles}
         >
         <MainView />
@@ -27,15 +28,91 @@ class Application extends Component {
 }
 
 class MainView extends Component {
+
+  constructor() {
+    super();
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = {
+      dataSource: ds.cloneWithRows([
+        'row 1', 
+        'row 2',
+        'row 2',
+        'row 2',
+        'row 2',
+        'row 2',
+        'row 2',
+        'row 2',
+        'row 2',
+        'row 2',
+        'row 2',
+        'row 2',
+        'row 2',
+        'row 2',
+        'row 5',
+        'row 2',
+        'row 2',
+        'row 2',
+        'row 2',
+        'row 2',
+        'row 6',
+        'row 6',
+        'row 6',
+        'row 6',
+        'row 6',
+        'row 6',
+        'row 6',
+        'row 6',
+        'row 6',
+        'row 6',
+        'row 6',
+        'row 9',
+        ]),
+    };
+  }
+
+  _handlePress() {
+    console.log('Pressed!');
+  }  
+
   render() {
     return (
         <View style={{flex: 1}}>
-          <ScrollView><Text>main</Text></ScrollView>
-          <View><Text>footer</Text></View>
+          <ScrollView>
+
+
+
+
+              <ListView
+                dataSource={this.state.dataSource}
+                renderRow={(rowData) => <Text>{rowData}</Text>}
+              />
+
+
+          </ScrollView>
+          <View>
+          <View style={{flex: 1, flexDirection: 'row'}}>
+            <View style={{flex: 1, height: 50, backgroundColor: 'powderblue'}} />
+            <View style={{flex: 1,height: 50, backgroundColor: 'skyblue'}} />
+            <View style={{flex: 1, height: 50, backgroundColor: 'steelblue'}} />
+          </View>
+          </View>
+
+
+
+
         </View>
     );
   }
 }
+          // <View>
+          //     <Button
+          //       style={{fontSize: 20, color: 'green'}}
+          //       styleDisabled={{color: 'red'}}
+          //       onPress={() => this._handlePress()}>
+          //       Press Me!
+          //     </Button>          
+          //   <Text>footer</Text>
+          // </View>
 
 class SideContent extends Component {
   render() {
