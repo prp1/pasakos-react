@@ -4,13 +4,14 @@ import Drawer from 'react-native-drawer'
 import Button from 'react-native-button';
 
 class Application extends Component {  
-  closeControlPanel() {
-    this._drawer.close()
-  }
 
-  openControlPanel() {
-    this._drawer.open()
-  }
+    isOpened = false;
+
+    toggleSideDrawer() {
+        this.isOpened ? this._drawer.close() : this._drawer.open();
+        this.isOpened = !this.isOpened;
+    }
+
 
   render () {
     return (
@@ -21,7 +22,9 @@ class Application extends Component {
         open={false}
         styles={drawerStyles}
         >
-        <MainView />
+        <MainView 
+            toggleSideDrawer={this.toggleSideDrawer.bind(this)}
+        />
       </Drawer>
     )
   }
@@ -91,7 +94,15 @@ class MainView extends Component {
           </ScrollView>
           <View>
           <View style={{flex: 1, flexDirection: 'row'}}>
-            <View style={{flex: 1, height: 50, backgroundColor: 'powderblue'}} />
+            <View style={{flex: 1, height: 50, backgroundColor: 'powderblue'}}>
+              <Button
+                style={{fontSize: 20, color: 'green'}}
+                styleDisabled={{color: 'red'}}
+                onPress={() => this.props.toggleSideDrawer()}>
+                Press Me!
+              </Button>          
+
+            </View>
             <View style={{flex: 1,height: 50, backgroundColor: 'skyblue'}} />
             <View style={{flex: 1, height: 50, backgroundColor: 'steelblue'}} />
           </View>
@@ -105,12 +116,6 @@ class MainView extends Component {
   }
 }
           // <View>
-          //     <Button
-          //       style={{fontSize: 20, color: 'green'}}
-          //       styleDisabled={{color: 'red'}}
-          //       onPress={() => this._handlePress()}>
-          //       Press Me!
-          //     </Button>          
           //   <Text>footer</Text>
           // </View>
 
