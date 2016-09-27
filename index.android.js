@@ -1,3 +1,13 @@
+import { AppRegistry } from 'react-native';
+import App from './app/app.component';
+
+AppRegistry.registerComponent('pasakos', () => App);
+
+
+
+/*
+
+
 import React, { Component } from 'react';
 import { AppRegistry, Text, View, ScrollView, ListView, ToolbarAndroid } from 'react-native';
 import Drawer from 'react-native-drawer'
@@ -165,6 +175,23 @@ class WithFooter extends Component {
 };
 
 AppRegistry.registerComponent('pasakos', () => Application);
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ////////////////////////////////
 ////////////////////////////////
